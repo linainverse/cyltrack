@@ -1,0 +1,35 @@
+}<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>/cyltrack/</title>
+  </head>
+  <body>
+    <h1>/view cylinder info/</h1>
+    
+    <form method="post">
+      <label>
+        <div class="label">Title</div>
+        <input type = "text" name = "title" value="{{title}}"> 
+      </label>
+      <label>
+        <div class="label">ASCII Art</div>
+        <textarea name="art">{{art}}</textarea>
+      </label>
+      
+      <div class="error">{{error}}</div>
+
+      <input type="submit">
+    </form>
+    
+    <hr>
+
+    {% for cylinder in cylinders %}
+      <div class="cylinder">
+        <div class="cylinder-id">
+	  {{cylinder.id}}  
+	</div>
+	<pre class="-body">{{art.art}}</pre>
+      </div>
+    {% endfor %}
+  </body>
+</html>

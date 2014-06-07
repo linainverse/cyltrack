@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>/cyltrack/</title>
+  </head>
+  <body>
+    <h1>/Facility/</h1>
+    
+    <form method="post">
+      <div class="left-column">
+	  <div class="row">
+	    <label>
+	      Cylinder Id 
+	      <input type="text" name="cylinderId" value="{{cylinderId}}">
+	    </label>
+	  </div>
+	  <div class="row">
+	    <label>
+	      BarCode 
+	      <input type="text" name="barcode" value="{{barcode}}">
+	    </label>
+	  </div>
+	  <div class="row">
+	    <label>
+	      Facility Ownership 
+	      <select name="ownFacility">
+	        <option value="own">Own</option>
+		<option value="customer">Customer</option>
+	      </select>
+	    </label>
+	  </div>
+	  <div class="row">
+	    <label>
+	      Facility Type
+	      <select name="facilityType">
+	        <option value="factory">Factory</option>
+		<option value="godown">Godown</option>
+		<option value="customer">Customer</option>
+	      </select>
+	    </label>
+	  </div>
+	  <div class="row">
+	    <label>
+	      Street Address 
+	      <textarea name="streetAddress">{{streetAddress}}</textarea>
+	    </label>
+	  </div>
+	  <div class="row">
+	    <label>
+	      City 
+	      <input type="text" name="city" value="{{city}}">
+	    </label>
+	  </div>
+	  <div class="row">
+	    <label>
+	      State 
+	      <input type="text" name="state" value="{{state}}">
+	    </label>
+	  </div>
+	  <div class="row">
+	    <label>
+	       Pincode 
+	      <input type="text" name="pincode" value="{{pincode}}">
+	    </label>
+	  </div>
+	  <div class="row">
+	    <label>
+	      Phone Number 
+	      <input type="text" name="phoneNumber" value="{{phoneNumber}}">
+	    </label>
+          </div>
+      </div>
+      <div class="error">{{error}}</div>
+
+      <input type="submit">
+    </form>
+    
+    <hr>
+
+    {% for cylinder in cylinders %}
+      <div class="cylinder">
+        <div class="cylinder-id">
+	  {{cylinder.id}}  
+	</div>
+	<pre class="-body">{{art.art}}</pre>
+      </div>
+    {% endfor %}
+  </body>
+</html>
