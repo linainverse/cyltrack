@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Add or modify cylinder details</title>
+  </head>
+  <body>
+    <h1>/Cylinder/</h1>
+    
+    <form method="post">
+      <div class="left-column">
+	  <div class="row">
+	    <label>
+	      Cylinder BarCode 
+	      <input type="text" name="barcode" value="{{barcode}}">
+	    </label>
+	  </div>
+	  <div class="row">
+	    <label>
+	      Capacity 
+	      <input type="text" name="capacity" value="{{capacity}}">
+	    </label>
+	  </div>
+	  <div class="row">
+	    <label>
+	      Manufacturer 
+	      <input type="text" name="manufacturer" value="{{manufacturer}}">
+	    </label>
+	  </div>
+	  <div class="row">
+	    <label>
+	      Year Of Manufacturing 
+	      <input type="text" name="yearOfMfg" value="{{yearOfMfg}}">
+	    </label>
+	  </div>
+	  <div class="row">
+	    <label>
+	      Tare Weight 
+	      <input type="text" name="tareWeight" value="{{tareWeight}}">
+	    </label>
+	  </div>
+	  <div class="row">
+	    <label>
+	      Last Test Date 
+	      <input type="text" name="lastTestDate" value="{{lastTestDate}}">
+	    </label>
+          </div>
+	  <div class="row">
+	    <label>
+	      Test Frequency (months) 
+	      <input type="text" name="testFrequency" value="{{testFrequency}}">
+	    </label>
+          </div>
+	  <div class="row">
+	    <label>
+	      Current Facility 
+	      <select name="currentFacility">
+	        {% for facility in facilities%}
+		  <option value="{{facility.key.urlsafe()}}">{{facility.name}}</option>
+	        {% endfor %}
+	      </select>
+	    </label>
+          </div>
+      </div>
+      <div class="error">{{error}}</div>
+
+      <input type="submit">
+    </form>
+    
+    <hr>
+</html>
