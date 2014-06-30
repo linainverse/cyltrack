@@ -69,7 +69,7 @@ class Transaction(ndb.Model):
 class AddFacility(webapp2.RequestHandler):
   
   def render(self, templateValues = {}):
-    template = JINJA_ENVIRONMENT.get_template("templates/facility.html")
+    template = JINJA_ENVIRONMENT.get_template("templates/add-facility.html")
     self.response.write(template.render(templateValues))
 
   def post(self):
@@ -112,7 +112,7 @@ class AddFacility(webapp2.RequestHandler):
 class AddCylinder(webapp2.RequestHandler):
 
   def render(self, templateValues = {}):
-    template = JINJA_ENVIRONMENT.get_template("templates/cylinder.html")
+    template = JINJA_ENVIRONMENT.get_template("templates/add-cylinder.html")
     self.response.write(template.render(templateValues))
     
   def get(self):
@@ -157,8 +157,24 @@ class AddCylinder(webapp2.RequestHandler):
     newCylinder.put()
 
     logging.info("new cylinder added")
+
+class ViewFacilities(webapp2.RequestHandler)
   
+  def get(self):
+    allFacilities = ndb.gql("SELECT * FROM Facility").fetch()
+    cylinders = ndb.gql("SELECT * FROM Cylinders").fetch()
+    
+    facilityName = {}
+    for facility in facilities:
+      facilityName[facility.key.urlsafe()] = facility.name  
+
+    facilityStats = {}
+
+    for cylinder in cylinders:
+        
+
 application = webapp2.WSGIApplication([
   ('/add-cylinder', AddCylinder),
   ('/add-facility', AddFacility),
+  ('/view-facilities', ViewFacilities)
 ], debug=True)
