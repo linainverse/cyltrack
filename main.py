@@ -44,6 +44,8 @@ class Cylinder(ndb.Model):
   manufacturer = ndb.StringProperty(indexed = False)
   yearOfMfg = ndb.IntegerProperty()
   tareWeight = ndb.FloatProperty(indexed = False)
+  filled = ndb.BooleanProperty(default = False)
+  gas = ndb.StringProperty()
 
   lastTestDate = ndb.DateProperty(auto_now_add = True)
   testFrequency = ndb.IntegerProperty(default = 6) #test frequency in months
