@@ -158,20 +158,34 @@ class AddCylinder(webapp2.RequestHandler):
 
     logging.info("new cylinder added")
 
-class ViewFacilities(webapp2.RequestHandler)
+class ViewFacilities(webapp2.RequestHandler):
   
   def get(self):
     allFacilities = ndb.gql("SELECT * FROM Facility").fetch()
-    cylinders = ndb.gql("SELECT * FROM Cylinders").fetch()
+    cylinders = ndb.gql("SELECT * FROM Cylinder").fetch()
     
     facilityName = {}
-    for facility in facilities:
+    for facility in allFacilities:
       facilityName[facility.key.urlsafe()] = facility.name  
 
     facilityStats = {}
 
     for cylinder in cylinders:
-        
+      if cylinder.currentFacility.urlsafe() not in facilityStats: 
+        facilityStats[cylinder.currentFacility.urlsafe()] = {}
+
+      facilityStats[cylinder.currentFacility.urlsafe()]["name"] = facilityName[cylinder.currentFacility.urlsafe()]
+      
+      if (facilityStats[cylinder.currentFacility.urlsafe()].get("fullCylinders")) :
+	facilityStats[cylinder.currentFacility.urlsafe()]["fullCylinders"] += 1      
+      else:
+        facilityStats[cylinder.currentFacility.urlsafe()]["fullCylinders"] = 1
+
+    output = ""
+    for key in facilityStats:
+        output += facilityStats[key]["name"] + " " + str(facilityStats[key]["fullCylinders"]) + "\n" 
+ 
+    logging.info("%s" %(output))
 
 application = webapp2.WSGIApplication([
   ('/add-cylinder', AddCylinder),
