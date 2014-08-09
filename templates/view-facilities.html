@@ -14,10 +14,12 @@
 	</tr>
       </thead>
       <tbody>
+        {% for key in facilityStats %}
         <tr>
-	  <td>blah</td>
-	  <td>blah</td>
-	  <td>blah</td>
+	  <td>{{facilityStats[key]["name"]}}</td>
+	  <td>{{facilityStats[key]["emptyCylinders"]}}</td>
+	  <td>{{facilityStats[key]["fullCylinders"]}}</td>
+        {% endfor %}
 	</tr>
       </tbody>
     </table>
