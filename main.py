@@ -136,7 +136,7 @@ class AddCylinder(webapp2.RequestHandler):
     inputLastTestDate = utils.escapeHTML(self.request.get("lastTestDate"))
     inputTestFrequency = utils.escapeHTML(self.request.get("testFrequency"))
     inputCurrentFacility = utils.escapeHTML(self.request.get("currentFacility"))
-    
+    inputFilledStatus = utils.escapeHTML(self.request.get("filled")) 
     
     #validate inputs
     logging.info ("in the cylinder post %s" %(inputCurrentFacility));
@@ -145,6 +145,10 @@ class AddCylinder(webapp2.RequestHandler):
     #inputFacility = Facility.get_by_id(int(inputCurrentFacility))
 
     #logging.info("in the cylinder post %s" %(inputFacility.name))
+    
+    filledStatus = False
+    if inputFilledStatus == "true" :
+      filledStatus = True
 
     newCylinder = Cylinder(
       barcode = int(inputBarcode),
@@ -154,13 +158,18 @@ class AddCylinder(webapp2.RequestHandler):
       tareWeight = float(inputTareWeight),
     #  lastTestDate = inputLastTestDate,
       testFrequency = int(inputTestFrequency),
-      currentFacility = ndb.Key(urlsafe = inputCurrentFacility)) 
-   
+      currentFacility = ndb.Key(urlsafe = inputCurrentFacility), 
+      filled = filledStatus)
+
     newCylinder.put()
 
     logging.info("new cylinder added")
 
 class ViewFacilities(webapp2.RequestHandler):
+  
+  def render(self, templateValues = {}):
+    template = JINJA_ENVIRONMENT.get_template("templates/view-facilities.html")
+    self.response.write(template.render(templateValues))
   
   def get(self):
     allFacilities = ndb.gql("SELECT * FROM Facility").fetch()
@@ -188,6 +197,7 @@ class ViewFacilities(webapp2.RequestHandler):
         output += facilityStats[key]["name"] + " " + str(facilityStats[key]["fullCylinders"]) + "\n" 
  
     logging.info("%s" %(output))
+    self.render({"facilityStats":facilityStats})
 
 application = webapp2.WSGIApplication([
   ('/add-cylinder', AddCylinder),
