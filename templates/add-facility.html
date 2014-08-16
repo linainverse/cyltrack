@@ -2,71 +2,53 @@
 <html>
   <head>
     <title>/cyltrack/</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/base.css" />
   </head>
   <body>
+    <div class="container" role="main">
     <h1>/Facility/</h1>
     
-    <form method="post">
+    <form method="post" id="usrForm">
+     <fieldset>
       <div class="left-column">
-	  <div class="row">
-	    <label>
-	      Facility Name 
-	      <input type="text" name="facilityName" value="{{facilityName}}">
-	    </label>
-	  </div>
-	  <div class="row">
-	    <label>
-	      Facility Ownership 
-	      <select name="ownFacility">
+	    <label for="facName">Facility Name</label> 
+	    <input type="text" name="facilityName" value="{{facilityName}}" id="facName" placeholder="xyz factory/customer">
+	    <label for="facOwn">Facility Ownership</label>
+	    <select name="ownFacility" id="facOwn">
 	        <option value="own">Own</option>
 		<option value="customer">Customer</option>
-	      </select>
-	    </label>
-	  </div>
-	  <div class="row">
-	    <label>
-	      Facility Type
-	      <select name="facilityType">
+	    </select>
+	    <label for="facType">Facility Type</label>
+	    <select name="facilityType" id="facType">
 	        <option value="factory">Factory</option>
 		<option value="godown">Godown</option>
 		<option value="customer">Customer</option>
-	      </select>
-	    </label>
-	  </div>
-	  <div class="row">
+	    </select>
 	    <label>
 	      Street Address 
 	      <textarea name="streetAddress">{{streetAddress}}</textarea>
 	    </label>
-	  </div>
-	  <div class="row">
 	    <label>
 	      City 
 	      <input type="text" name="city" value="{{city}}">
 	    </label>
-	  </div>
-	  <div class="row">
 	    <label>
 	      State 
 	      <input type="text" name="state" value="{{state}}">
 	    </label>
-	  </div>
-	  <div class="row">
 	    <label>
 	       Pincode 
-	      <input type="text" name="pincode" value="{{pincode}}">
+	      <input type="tel" name="pincode" value="{{pincode}}">
 	    </label>
-	  </div>
-	  <div class="row">
 	    <label>
 	      Phone Number 
-	      <input type="text" name="phoneNumber" value="{{phoneNumber}}">
+	      <input type="number" name="phoneNumber" value="{{phoneNumber}}">
 	    </label>
-          </div>
       </div>
+      </fieldset>
       <div class="error">{{error}}</div>
 
-      <input type="submit">
+      <input class="btn" type="submit">
     </form>
     
     <hr>
@@ -79,5 +61,6 @@
 	<pre class="-body">{{art.art}}</pre>
       </div>
     {% endfor %}
+    <div class="container">
   </body>
 </html>
