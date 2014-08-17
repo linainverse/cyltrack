@@ -60,7 +60,7 @@ class Transaction(ndb.Model):
   cylinderId = ndb.IntegerProperty(required = True)
   currentFacilityId = ndb.KeyProperty()
   destinationFaciltyId = ndb.IntegerProperty()
-  dateOfTransaction = ndb.DateTimeProperty() #default needs to be set to current time
+  timeOfTransaction = ndb.DateTimeProperty() #default needs to be set to current time
   typeOfTransaction = ndb.StringProperty(indexed = False)
 
 
@@ -156,7 +156,7 @@ class AddCylinder(webapp2.RequestHandler):
       manufacturer = inputManufacturer,
       yearOfMfg = int(inputYearOfMfg),
       tareWeight = float(inputTareWeight),
-    #  lastTestDate = inputLastTestDate,
+      lastTestDate = datetime.strptime(inputLastTestDate,'%Y-%m-%d'),
       testFrequency = int(inputTestFrequency),
       currentFacility = ndb.Key(urlsafe = inputCurrentFacility), 
       filled = filledStatus)
@@ -199,8 +199,18 @@ class ViewFacilities(webapp2.RequestHandler):
     logging.info("%s" %(output))
     self.render({"facilityStats":facilityStats})
 
+class moveCylinders(webapp2.RequestHandler):
+
+  def render(self, templateValues = {}):
+    template = JINJA_ENVIRONMENT.get_template("templates/move-cylinders.html")
+    self.response.write(template.render(templateValues))
+
+  def get(self):
+    self.render()
+
 application = webapp2.WSGIApplication([
   ('/add-cylinder', AddCylinder),
   ('/add-facility', AddFacility),
-  ('/view-facilities', ViewFacilities)
+  ('/view-facilities', ViewFacilities),
+  ('/move-cylinders', moveCylinders)
 ], debug=True)
