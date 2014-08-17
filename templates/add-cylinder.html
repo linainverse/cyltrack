@@ -2,55 +2,42 @@
 <html>
   <head>
     <title>Add or modify cylinder details</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/base.css" />
   </head>
   <body>
+    <div class="container" role="main">
     <h1>/Cylinder/</h1>
     
     <form method="post">
-      <div class="left-column">
-	  <div class="row">
+      <fieldset>
 	    <label>
 	      Cylinder BarCode 
 	      <input type="text" name="barcode" value="{{barcode}}">
 	    </label>
-	  </div>
-	  <div class="row">
 	    <label>
 	      Capacity 
-	      <input type="text" name="capacity" value="{{capacity}}">
+	      <input type="number" name="capacity" value="{{capacity}}">
 	    </label>
-	  </div>
-	  <div class="row">
 	    <label>
 	      Manufacturer 
 	      <input type="text" name="manufacturer" value="{{manufacturer}}">
 	    </label>
-	  </div>
-	  <div class="row">
 	    <label>
 	      Year Of Manufacturing 
-	      <input type="text" name="yearOfMfg" value="{{yearOfMfg}}">
+	      <input type="number" name="yearOfMfg" value="{{yearOfMfg}}">
 	    </label>
-	  </div>
-	  <div class="row">
 	    <label>
 	      Tare Weight 
-	      <input type="text" name="tareWeight" value="{{tareWeight}}">
+	      <input type="number" name="tareWeight" value="{{tareWeight}}">
 	    </label>
-	  </div>
-	  <div class="row">
 	    <label>
 	      Last Test Date 
 	      <input type="date" name="lastTestDate" value="{{lastTestDate}}">
 	    </label>
-          </div>
-	  <div class="row">
 	    <label>
 	      Test Frequency (months) 
-	      <input type="text" name="testFrequency" value="{{testFrequency}}">
+	      <input type="number" name="testFrequency" value="{{testFrequency}}">
 	    </label>
-          </div>
-	  <div class="row">
 	    <label>
 	      Current Facility 
 	      <select name="currentFacility">
@@ -59,8 +46,6 @@
 	        {% endfor %}
 	      </select>
 	    </label>
-          </div>
-          <div class="row">
 	    <label>
 	      Filled 
 	      <select name="filled">
@@ -68,12 +53,12 @@
 		  <option value="false">False</option>
 	      </select>
 	    </label>
-          </div>
 
+      </fieldset>
+      <input type="submit" class="btn">
       </div>
       <div class="error">{{error}}</div>
 
-      <input type="submit">
     </form>
     
     <hr>

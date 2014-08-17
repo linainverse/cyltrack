@@ -13,17 +13,21 @@
       <div class="left-column">
 	    <label for="facName">Facility Name</label> 
 	    <input type="text" name="facilityName" value="{{facilityName}}" id="facName" placeholder="xyz factory/customer">
-	    <label for="facOwn">Facility Ownership</label>
-	    <select name="ownFacility" id="facOwn">
+	    <label>
+	      Facility Ownership
+	      <select name="ownFacility" id="facOwn">
 	        <option value="own">Own</option>
 		<option value="customer">Customer</option>
-	    </select>
-	    <label for="facType">Facility Type</label>
-	    <select name="facilityType" id="facType">
+	      </select>
+	    </label>
+	    <label>
+	      Facility Type
+	      <select name="facilityType" id="facType">
 	        <option value="factory">Factory</option>
 		<option value="godown">Godown</option>
 		<option value="customer">Customer</option>
-	    </select>
+	      </select>
+	    </label>
 	    <label>
 	      Street Address 
 	      <textarea name="streetAddress">{{streetAddress}}</textarea>
@@ -38,17 +42,18 @@
 	    </label>
 	    <label>
 	       Pincode 
-	      <input type="tel" name="pincode" value="{{pincode}}">
+	      <input type="number" name="pincode" value="{{pincode}}">
 	    </label>
 	    <label>
 	      Phone Number 
-	      <input type="number" name="phoneNumber" value="{{phoneNumber}}">
+	      <input type="tel" name="phoneNumber" value="{{phoneNumber}}">
 	    </label>
       </div>
       </fieldset>
       <div class="error">{{error}}</div>
 
       <input class="btn" type="submit">
+      </div>
     </form>
     
     <hr>
@@ -61,6 +66,5 @@
 	<pre class="-body">{{art.art}}</pre>
       </div>
     {% endfor %}
-    <div class="container">
   </body>
 </html>
