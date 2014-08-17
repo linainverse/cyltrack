@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Add or modify cylinder details</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/base.css" />
+  </head>
+  <body>
+    <div class="container" role="main">
+    <h1>/Move/</h1>
+    <hr> 
+    <form method="post">
+      <fieldset>
+        <label for="cylList">List Of Cylinders</label>
+        <textarea id="cylList" placeholder="comma separated list of cylinder barcodes"></textarea>
+
+	<label for="frmFac">From</label>
+        <select name="fromFacility" id="frmFac">
+	  {% for facility in fromFacilities %}
+	    <option value="{{facility.key.urlsafe()}}">{{facility.name}}</option>
+	  {% endfor %}
+	</select>
+
+	<label for="toFac">To</label>
+	<select name="toFacility" id="toFac">
+	  {% for facility in toFacilities %}
+	    <option value="{{facility.key.urlsafe()}}">{{facility.name}}</option>
+	  {% endfor %}
+	</select>
+
+	<label for="purp">Purpose</label>
+	<select name="purpose" id="purp">
+	  <option value="transport">Transport</option>
+	  <option value="test">Test</option>
+	</select>
+
+	<label for="trDate">Date</label>
+	<input type="date" name="date" id="trDate">
+        <hr> 
+      </fieldset>
+      <input type="submit" class="btn">
+    </form>
+    </div>
+  </body>
+</html>
+	
